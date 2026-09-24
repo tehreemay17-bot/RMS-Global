@@ -9,9 +9,9 @@
 }
 
 .nav.is-scrolled {
-  background: rgb(var(--bg-rgb) / 0.78);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
+  background: rgb(var(--bg-rgb) / 0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border-bottom-color: var(--line);
 }
 
