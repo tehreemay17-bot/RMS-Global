@@ -20,12 +20,45 @@
       content="RMS — Rameen Media Solutions. A full-service media, creative and experiential agency: social, PR, creative, production, brand activations, events and concerts. Est. 1994."
     />
     <title>RMS — Rameen Media Solutions</title>
+    <link rel="canonical" href="https://rameenmediasolutions.com/" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Title/description/OG/Twitter tags below are static (social-share unfurl bots don't run JS,
+         so these can't be injected at runtime like the JSON-LD block is) — if BRAND/CONTACT in
+         src/config.js ever change name/tagline, update the matching text here too. -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RMS — Rameen Media Solutions" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://rameenmediasolutions.com/" />
+    <meta property="og:title" content="RMS — Rameen Media Solutions" />
+    <meta
+      property="og:description"
+      content="A full-service media, creative and experiential agency: social, PR, creative, production, brand activations, events and concerts. Est. 1994."
+    />
+    <meta property="og:image" content="https://rameenmediasolutions.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RMS — Rameen Media Solutions" />
+    <meta
+      name="twitter:description"
+      content="A full-service media, creative and experiential agency: social, PR, creative, production, brand activations, events and concerts. Est. 1994."
+    />
+    <meta name="twitter:image" content="https://rameenmediasolutions.com/og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="/hero-poster.jpg" />
+    <!-- The LocalBusiness JSON-LD structured-data block is injected at runtime by
+         src/components/Seo.jsx, sourced from src/config.js (BRAND/CONTACT) so it can never
+         drift out of sync with the contact details shown elsewhere on the site. -->
   </head>
   <body>
     <div id="root"></div>
