@@ -191,7 +191,7 @@ export default function Services() {
               01 — What we do
             </Reveal>
             <h2 className="section-title display services-title">
-              <SplitText parts={HEADING} by="word" stagger={0.11} />
+              <SplitText parts={HEADING} by="word" stagger={0.06} />
             </h2>
           </div>
           {pinned ? (

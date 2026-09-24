@@ -227,7 +227,7 @@ export default function Artists() {
             <SplitText
               parts={['The voices', { br: true }, 'behind ', { t: 'the nights.', className: 'serif artists-accent' }]}
               by="word"
-              stagger={0.12}
+              stagger={0.07}
             />
           </h2>
           <div className="artists-sub">

@@ -39,12 +39,12 @@ export default function SplitText({
 }) {
   const Tag = motion[as]
   const words = toWords(parts)
-  const step = stagger ?? (by === 'char' ? 0.03 : 0.09)
+  const step = stagger ?? (by === 'char' ? 0.018 : 0.055)
   const label = words.filter((w) => !w.br).map((w) => w.w).join(' ')
 
   const item = {
     hidden: { y, rotate },
-    show: (i) => ({ y: 0, rotate: 0, transition: { duration: 1.05, ease: EASE, delay: delay + i * step } }),
+    show: (i) => ({ y: 0, rotate: 0, transition: { duration: 0.65, ease: EASE, delay: delay + i * step } }),
   }
 
   const trigger =

@@ -222,7 +222,7 @@ export default function Booking() {
             <SplitText
               parts={['Let’s talk', { br: true }, 'about your', { br: true }, { t: 'next moment.', className: 'serif work-accent' }]}
               by="word"
-              stagger={0.11}
+              stagger={0.06}
             />
           </h2>
           <Reveal as="p" className="lead" y={20} delay={0.1}>

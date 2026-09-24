@@ -83,7 +83,7 @@ export default function Hero({ ready }) {
   const fade = (delay) => ({
     initial: { opacity: 0, y: 28 },
     animate: ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
-    transition: { duration: 1, ease: EASE, delay },
+    transition: { duration: 0.7, ease: EASE, delay },
   })
 
   return (
@@ -120,22 +120,22 @@ export default function Hero({ ready }) {
 
         <h1 className="hero-title display">
           <motion.span className="hero-line-wrap" style={{ x: line1X }}>
-            <SplitText parts="Ideas." when={ready} delay={0.15} className="hero-line hero-line-1" />
+            <SplitText parts="Ideas." when={ready} delay={0.08} className="hero-line hero-line-1" />
           </motion.span>
           <motion.span className="hero-line-wrap" style={{ x: line2X }}>
-            <SplitText parts="Influence." when={ready} delay={0.45} className="hero-line hero-line-2 serif" />
+            <SplitText parts="Influence." when={ready} delay={0.24} className="hero-line hero-line-2 serif" />
           </motion.span>
           <motion.span className="hero-line-wrap" style={{ x: line3X }}>
-            <SplitText parts="Experiences." when={ready} delay={0.8} className="hero-line hero-line-3" />
+            <SplitText parts="Experiences." when={ready} delay={0.42} className="hero-line hero-line-3" />
           </motion.span>
         </h1>
 
         <div className="hero-lower">
-          <motion.p className="hero-sub" {...fade(1.35)}>
+          <motion.p className="hero-sub" {...fade(0.7)}>
             {BRAND.name} takes brands from strategy to spectacle, on screen, on site and on stage, with one
             integrated team and three decades of nights people still talk about.
           </motion.p>
-          <motion.div className="hero-actions" {...fade(1.5)}>
+          <motion.div className="hero-actions" {...fade(0.8)}>
             <Magnetic>
               <a href="#book" className="btn-cta">
                 <span>Start a project</span>
@@ -158,7 +158,7 @@ export default function Hero({ ready }) {
         className="hero-seal"
         initial={{ opacity: 0, scale: 0.8, rotate: -30 }}
         animate={ready ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -30 }}
-        transition={{ duration: 1.4, ease: EASE, delay: 1.2 }}
+        transition={{ duration: 1, ease: EASE, delay: 0.65 }}
       >
         <svg viewBox="0 0 200 200" className="hero-seal-ring">
           <defs>
@@ -178,7 +178,7 @@ export default function Hero({ ready }) {
         className="hero-foot"
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1, delay: 1.7 }}
+        transition={{ duration: 0.8, delay: 0.9 }}
       >
         <div className="hero-foot-row container">
           <a href="#services" className="hero-scroll label">

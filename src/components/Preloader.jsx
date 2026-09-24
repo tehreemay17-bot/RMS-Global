@@ -10,7 +10,7 @@ export default function Preloader({ onDone }) {
   useEffect(() => {
     document.documentElement.classList.add('scroll-locked')
     const controls = animate(0, 100, {
-      duration: 1.7,
+      duration: 1.1,
       ease: [0.65, 0, 0.35, 1],
       onUpdate: (v) => setCount(Math.round(v)),
       onComplete: () => setLeaving(true),
@@ -27,7 +27,7 @@ export default function Preloader({ onDone }) {
       data-theme="dark"
       initial={{ clipPath: 'inset(0 0 0% 0)' }}
       animate={{ clipPath: leaving ? 'inset(0 0 100% 0)' : 'inset(0 0 0% 0)' }}
-      transition={{ duration: 0.95, ease: [0.76, 0, 0.24, 1], delay: leaving ? 0.15 : 0 }}
+      transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: leaving ? 0.1 : 0 }}
       onAnimationComplete={() => leaving && onDone()}
       role="status"
       aria-label="Loading"

@@ -109,7 +109,7 @@ export default function Brands() {
           06 — Brands we&rsquo;ve worked with
         </Reveal>
         <h2 className="section-title display">
-          <SplitText parts={['Trusted by ', { t: 'names you know.', className: 'serif brands-accent' }]} by="word" stagger={0.12} />
+          <SplitText parts={['Trusted by ', { t: 'names you know.', className: 'serif brands-accent' }]} by="word" stagger={0.07} />
         </h2>
         <Reveal as="p" className="lead" y={20} delay={0.1}>
           From campuses to household names, here are some of the brands and institutions RMS has partnered with.

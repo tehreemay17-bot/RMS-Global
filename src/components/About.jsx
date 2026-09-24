@@ -206,7 +206,7 @@ export default function About() {
             The RMS method
           </Reveal>
           <h3 className="process-title display">
-            <SplitText parts={['One team, ', { t: 'five moves.', className: 'serif about-hot' }]} by="word" stagger={0.1} />
+            <SplitText parts={['One team, ', { t: 'five moves.', className: 'serif about-hot' }]} by="word" stagger={0.06} />
           </h3>
         </div>
         <div className="process-track">

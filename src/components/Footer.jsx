@@ -34,7 +34,7 @@ export default function Footer() {
                 'Experiences.',
               ]}
               by="word"
-              stagger={0.14}
+              stagger={0.08}
             />
           </h2>
           <Reveal y={20} delay={0.1}>

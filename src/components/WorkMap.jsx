@@ -353,7 +353,7 @@ export default function WorkMap() {
             <SplitText
               parts={['From Lahore to', { br: true }, { t: 'the world.', className: 'serif work-accent' }]}
               by="word"
-              stagger={0.12}
+              stagger={0.07}
             />
           </h2>
         </div>

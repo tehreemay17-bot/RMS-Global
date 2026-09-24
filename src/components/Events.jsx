@@ -95,7 +95,7 @@ function EventGroup({ event, index, onOpenPhoto }) {
           </motion.span>
         </span>
         <h3 className="event-title display">
-          <SplitText parts={event.title} by="word" stagger={0.09} />
+          <SplitText parts={event.title} by="word" stagger={0.05} />
         </h3>
         <Reveal as="p" className="label event-meta" y={12}>
           {meta}
@@ -151,7 +151,7 @@ export default function Events() {
             <SplitText
               parts={['Nights worth', { br: true }, { t: 'remembering.', className: 'serif events-accent' }]}
               by="word"
-              stagger={0.12}
+              stagger={0.07}
             />
           </h2>
           <div className="events-tools">
