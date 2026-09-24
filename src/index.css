@@ -493,6 +493,14 @@ svg {
     cursor: grabbing !important;
   }
 
+  html.has-custom-cursor .brand-wall {
+    cursor: grab !important;
+  }
+
+  html.has-custom-cursor .brand-wall:active {
+    cursor: grabbing !important;
+  }
+
   html.has-custom-cursor .artist-card.is-active {
     cursor: zoom-in !important;
   }

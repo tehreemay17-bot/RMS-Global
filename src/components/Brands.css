@@ -24,8 +24,13 @@
   margin-top: clamp(48px, 7vw, 88px);
   padding-block: 6px;
   overflow: hidden;
+  cursor: grab;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.brand-wall:active {
+  cursor: grabbing;
 }
 
 .brand-track {

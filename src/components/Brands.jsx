@@ -41,17 +41,25 @@ function BrandCard({ wall, index }) {
   )
 }
 
+const LOOP_SECONDS = 26 // seconds for one full loop at rest — brisk enough to read as "alive"
+
 // The image wall below reuses the same velocity-reactive endless-scroll technique as
 // components/Marquee.jsx (speeds up and reverses with page-scroll direction, pauses on
-// hover/off-screen) — rebuilt inline here for image cards rather than text.
+// hover/off-screen) — rebuilt inline here for image cards rather than text. It's also
+// directly draggable/swipeable (mouse or touch) via Framer's pan gesture, since `x` is
+// derived from `pos` rather than a plain draggable motion value, plain `drag="x"` doesn't
+// apply cleanly here.
 export default function Brands() {
   const sectionRef = useRef(null)
   const entrance = useSectionEntrance(sectionRef)
   const reduce = useReducedMotion()
 
   const wallRef = useRef(null)
+  const groupRef = useRef(null)
   const inView = useInView(wallRef, { amount: 0.2 })
   const paused = useRef(false)
+  const dragging = useRef(false)
+  const groupWidth = useRef(0)
   const dir = useRef(-1)
   const pos = useMotionValue(0) // percent of one group: 0 .. -100
   const [hover, setHover] = useState(false)
@@ -60,16 +68,28 @@ export default function Brands() {
   const smooth = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 })
 
   useAnimationFrame((_, delta) => {
-    if (reduce || !inView || paused.current) return
+    if (reduce || !inView || paused.current || dragging.current) return
     const v = smooth.get()
     if (v < -40) dir.current = 1
     else if (v > 40) dir.current = -1
-    const rest = (16 / 42) * (delta / 1000)
+    const rest = (100 / LOOP_SECONDS) * (delta / 1000)
     const move = dir.current * rest * (1 + Math.min(Math.abs(v) / 260, 9))
     pos.set(wrap(-100, 0, pos.get() + move))
   })
 
   const x = useTransform(pos, (v) => `${v / 2}%`)
+
+  const onPanStart = () => {
+    dragging.current = true
+    groupWidth.current = groupRef.current?.getBoundingClientRect().width || 1
+  }
+  const onPan = (_, info) => {
+    const deltaPct = (info.delta.x / groupWidth.current) * 100
+    pos.set(wrap(-100, 0, pos.get() + deltaPct))
+  }
+  const onPanEnd = () => {
+    dragging.current = false
+  }
 
   const group = (
     <div className="brand-group">
@@ -103,6 +123,7 @@ export default function Brands() {
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 1, ease: EASE }}
+        style={{ touchAction: 'pan-y' }}
         onPointerEnter={() => {
           paused.current = true
           setHover(true)
@@ -111,9 +132,16 @@ export default function Brands() {
           paused.current = false
           setHover(false)
         }}
+        onPanStart={onPanStart}
+        onPan={onPan}
+        onPanEnd={onPanEnd}
       >
         <motion.div className="brand-track" style={{ x }}>
-          {group}
+          <div ref={groupRef} className="brand-group">
+            {BRAND_WALLS.map((wall, i) => (
+              <BrandCard key={wall.src} wall={wall} index={i} />
+            ))}
+          </div>
           {group}
         </motion.div>
       </motion.div>

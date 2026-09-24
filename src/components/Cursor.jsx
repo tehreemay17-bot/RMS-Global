@@ -11,7 +11,7 @@ const HOVER_SELECTOR = [
 
 // Things that already carry their own meaningful native cursor (grab, zoom-in, not-allowed,
 // progress…) — the custom cursor hides itself here so that cursor keeps doing its job.
-const NATIVE_SELECTOR = '.artist-stage, .cal-day:disabled, [disabled]'
+const NATIVE_SELECTOR = '.artist-stage, .brand-wall, .cal-day:disabled, [disabled]'
 
 // Renders nothing on touch devices, imprecise pointers, or prefers-reduced-motion — the OS cursor
 // is left completely alone in those cases.
