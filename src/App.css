@@ -1,0 +1,9 @@
+/* Section-level layout lives next to each component; this file is intentionally small. */
+main {
+  position: relative;
+}
+
+/* keep anchored sections clear of the fixed nav */
+section[id] {
+  scroll-margin-top: 0;
+}

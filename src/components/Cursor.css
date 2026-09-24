@@ -1,0 +1,51 @@
+.cursor-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-root > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Soft ambient glow: normal blend, tints whatever's underneath with the accent colour. */
+.cursor-glow {
+  width: 90px;
+  height: 90px;
+  margin: -45px 0 0 -45px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 72%);
+  filter: blur(4px);
+}
+
+/* Dot + ring: pure white with mix-blend-mode: difference, so they read against any background —
+   video, photos, light theme or dark — without any per-surface colour logic. */
+.cursor-dot,
+.cursor-ring {
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  background: transparent;
+  border: 1.5px solid #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-root {
+    display: none;
+  }
+}

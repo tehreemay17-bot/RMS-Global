@@ -1,0 +1,153 @@
+.svc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 6vw, 56px);
+  background: rgba(0, 0, 0, 0.82);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  overflow-y: auto;
+}
+
+.svc-modal {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  padding: clamp(32px, 4.5vw, 48px);
+  border: 1px solid var(--line-strong);
+  border-radius: 26px;
+  background: var(--card-bg);
+  box-shadow: 0 60px 140px -40px var(--accent-glow);
+}
+
+.svc-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s var(--ease-out);
+}
+
+.svc-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.svc-modal-close:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.svc-modal-num {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.svc-modal-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--accent-bright);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.svc-modal-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.svc-modal-title {
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.svc-modal-blurb {
+  font-size: 1.02rem;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.svc-modal-overview {
+  font-size: 0.96rem;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.svc-modal-points {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.svc-modal-points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.svc-modal-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.svc-modal-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.svc-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.svc-modal-tags li {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.64rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 560px) {
+  .svc-modal {
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+
+  .svc-modal-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

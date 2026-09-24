@@ -1,0 +1,165 @@
+.footer {
+  position: relative;
+  padding-top: clamp(96px, 12vw, 170px);
+  background:
+    radial-gradient(70% 60% at 50% 110%, rgb(var(--plum-rgb) / 0.45), transparent 70%),
+    var(--bg);
+  overflow: clip;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 110px);
+  align-items: start;
+}
+
+.footer-lead {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+}
+
+.footer-tagline {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.92;
+}
+
+.footer-hot {
+  color: var(--accent-bright);
+  text-shadow: 0 0 0.26em var(--accent-glow);
+}
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px 28px;
+  padding-top: 8px;
+}
+
+.footer-col {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.footer-col ul {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-link {
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--text);
+}
+
+.footer-plain {
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.footer-hours {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+/* Giant wordmark: outlined, filling with colour as you reach the bottom */
+.footer-mark {
+  position: relative;
+  margin-top: clamp(56px, 8vw, 120px);
+  height: clamp(9rem, 27vw, 27rem);
+  overflow: hidden;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(11rem, 36vw, 36rem);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+
+.footer-mark span {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.footer-mark-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.28);
+}
+
+.footer-mark-fill {
+  background: linear-gradient(180deg, var(--accent-bright), var(--accent) 45%, var(--plum));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 40px var(--accent-glow));
+}
+
+.footer-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 26px 30px;
+  border-top: 1px solid var(--line);
+  background: rgb(var(--bg-rgb) / 0.6);
+}
+
+.footer-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-top-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.footer-top-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.footer-top-link:hover svg {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1180px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-est {
+    display: none;
+  }
+}

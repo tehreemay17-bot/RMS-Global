@@ -1,0 +1,344 @@
+.about {
+  background:
+    radial-gradient(60% 50% at 88% 12%, rgb(var(--plum-rgb) / 0.28), transparent 70%),
+    var(--bg);
+  overflow: clip;
+}
+
+/*
+ * Background video: sticky + a negative bottom margin equal to its own height means it takes up
+ * zero net space in the flow (so it doesn't push the real content down), while staying pinned to
+ * the top of the viewport for as long as the section (its containing block) is scrolling past.
+ * Once the section's own bottom edge nears the viewport, the sticky box has nowhere left to stick
+ * within its parent and releases on its own — no JS needed for the "release into the next section".
+ */
+.about-bg {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.about-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Dark wash ~55-60% overall, extra darkening on the left where the heading + copy sit. */
+.about-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.12) 46%, rgba(0, 0, 0, 0) 80%),
+    rgba(0, 0, 0, 0.57);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 6vw, 110px);
+  align-items: start;
+}
+
+.about-copy {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.about-statement {
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.about-word {
+  display: inline-block;
+  will-change: opacity, transform;
+}
+
+.about-hot {
+  color: var(--accent-bright);
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 0.26em var(--accent-glow);
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.stat {
+  display: grid;
+  gap: 8px;
+}
+
+.stat-num {
+  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat .label {
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+/* Emblem */
+.about-visual {
+  position: sticky;
+  top: calc(var(--nav-h) + 40px);
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.emblem {
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.emblem-glow {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--plum-rgb) / 0.75), rgb(var(--accent-rgb) / 0.15) 50%, transparent 72%);
+  filter: blur(34px);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.12);
+    opacity: 0.8;
+  }
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+}
+
+.ring-1 { inset: 4%; border-style: dashed; border-color: rgb(var(--ink-rgb) / 0.28); }
+.ring-2 { inset: 17%; }
+.ring-3 { inset: 30%; border-color: var(--line); }
+
+.orbit-dot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 18px 4px var(--accent-glow);
+}
+
+.orbit-dot.dot-2 {
+  top: auto;
+  bottom: -5px;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background: var(--accent-bright);
+}
+
+.emblem-logo {
+  position: relative;
+  width: 34%;
+  height: auto;
+  filter: var(--logo-filter) drop-shadow(0 0 26px var(--accent-glow));
+}
+
+.emblem-est {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgb(var(--bg-rgb) / 0.7);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+}
+
+/* Process */
+.process {
+  margin-top: clamp(80px, 11vw, 170px);
+  display: grid;
+  gap: clamp(36px, 5vw, 64px);
+}
+
+.process-head {
+  display: grid;
+  gap: 20px;
+}
+
+.process-title {
+  font-size: clamp(2.4rem, 6vw, 5.6rem);
+}
+
+.process-track {
+  position: relative;
+  padding-top: 34px;
+}
+
+.process-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 41px;
+  height: 2px;
+  background: var(--line);
+}
+
+.process-line span {
+  display: block;
+  height: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--plum), var(--accent));
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.step {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.step-node {
+  width: 16px;
+  height: 16px;
+  margin-top: -1px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft), 0 0 24px var(--accent-glow);
+}
+
+.step-num {
+  margin-top: 14px;
+}
+
+.step-label {
+  font-size: clamp(1.15rem, 2.4vw, 2.2rem);
+  line-height: 1;
+}
+
+/* Sectors */
+.sectors {
+  margin-top: clamp(80px, 11vw, 160px);
+  display: grid;
+  gap: 24px;
+}
+
+.sectors-label {
+  padding-inline: var(--gutter);
+  max-width: var(--max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.sectors-marquee {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  line-height: 1.1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--fg-rgb) / 0.45);
+}
+
+.sectors-marquee .marquee-item {
+  transition: color 0.4s ease;
+}
+
+.sectors-marquee .marquee-item:hover {
+  color: var(--text);
+}
+
+@media (max-width: 899px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-visual {
+    position: relative;
+    top: auto;
+    order: -1;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-left: 34px;
+  }
+
+  .process-track {
+    padding-top: 0;
+  }
+
+  .process-line {
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .process-line span {
+    transform: none !important;
+    opacity: 0.55;
+  }
+
+  .step {
+    position: relative;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .step-node {
+    position: absolute;
+    left: -34px;
+    margin: 0;
+  }
+
+  .step-num {
+    margin: 0;
+  }
+
+  .step-label {
+    grid-column: 1 / -1;
+  }
+}

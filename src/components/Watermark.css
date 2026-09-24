@@ -1,0 +1,31 @@
+.watermark {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermark.is-top {
+  align-items: flex-start;
+}
+
+.watermark.is-center {
+  align-items: center;
+}
+
+.watermark.is-bottom {
+  align-items: flex-end;
+}
+
+.watermark span {
+  flex: none;
+  font-size: clamp(12rem, 34vw, 36rem);
+  line-height: 0.9;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.11);
+  will-change: transform;
+}

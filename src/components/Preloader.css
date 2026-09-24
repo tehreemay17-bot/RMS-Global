@@ -1,0 +1,55 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+}
+
+.preloader-glow {
+  position: absolute;
+  width: min(80vw, 760px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--plum-rgb) / 0.55), rgb(var(--accent-rgb) / 0.12) 45%, transparent 70%);
+  filter: blur(30px);
+}
+
+.preloader-logo {
+  position: relative;
+  width: clamp(140px, 22vw, 220px);
+  height: auto;
+}
+
+.preloader-meta {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 40px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.preloader-count {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.preloader-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  transform-origin: 0 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px 2px var(--accent-glow);
+}

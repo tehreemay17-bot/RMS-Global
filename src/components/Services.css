@@ -1,0 +1,310 @@
+.services {
+  position: relative;
+  background: var(--bg-2);
+}
+
+.services-stage {
+  position: relative;
+  padding-block: clamp(96px, 12vw, 160px);
+}
+
+.services.is-pinned .services-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  padding-block: calc(var(--nav-h) + 12px) 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.services-word {
+  position: absolute;
+  left: 0;
+  bottom: -0.16em;
+  font-size: clamp(14rem, 34vw, 34rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.13);
+  pointer-events: none;
+  user-select: none;
+}
+
+.services-head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+
+.services.is-pinned .services-head {
+  margin-bottom: 0;
+}
+
+.services-head-main {
+  display: grid;
+  gap: 22px;
+}
+
+.services-title {
+  font-size: clamp(2.6rem, 6.2vw, 6.2rem);
+}
+
+.services.is-pinned .services-title {
+  font-size: clamp(2.3rem, 5vw, 4.9rem);
+}
+
+.s-accent {
+  color: var(--accent-bright);
+  text-shadow: 0 0 0.26em var(--accent-glow);
+}
+
+.services-meter {
+  display: grid;
+  gap: 14px;
+  min-width: 190px;
+}
+
+.services-count {
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.services-count em {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+}
+
+.services-bar {
+  display: block;
+  height: 2px;
+  background: var(--line);
+}
+
+.services-bar span {
+  display: block;
+  height: 100%;
+  transform-origin: 0 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Track: horizontal in pinned mode, stacked otherwise */
+.services-track {
+  position: relative;
+  display: flex;
+  gap: clamp(16px, 2vw, 28px);
+  padding-inline: var(--gutter);
+  width: max-content;
+  will-change: transform;
+}
+
+.services:not(.is-pinned) .services-track {
+  width: auto;
+  flex-direction: column;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+/* Card */
+.s-card {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  flex: none;
+  width: clamp(310px, 30vw, 440px);
+  height: clamp(340px, 54vh, 500px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(22px, 2.2vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card-bg);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+  transition: transform 0.7s var(--ease-out), border-color 0.4s ease, box-shadow 0.6s var(--ease-out);
+}
+
+.services:not(.is-pinned) .s-card {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  gap: 40px;
+}
+
+.s-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--line-strong);
+  box-shadow: 0 30px 80px -30px var(--accent-glow);
+}
+
+.s-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(360px circle at var(--mx) var(--my), rgb(var(--accent-rgb) / 0.28), transparent 65%);
+  transition: opacity 0.5s ease;
+}
+
+.s-card:hover .s-card-glow {
+  opacity: 1;
+}
+
+.s-watermark {
+  position: absolute;
+  right: -0.06em;
+  bottom: -0.2em;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(9rem, 15vw, 14rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.14);
+  transition: -webkit-text-stroke-color 0.5s ease, transform 0.8s var(--ease-out);
+}
+
+.s-card:hover .s-watermark {
+  -webkit-text-stroke-color: rgb(var(--accent-rgb) / 0.5);
+  transform: translate(-6px, -10px);
+}
+
+.s-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--accent-bright);
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.5s ease, transform 0.7s var(--ease-out);
+}
+
+.s-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.s-card:hover .s-icon {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 0 34px var(--accent-glow);
+  transform: rotate(-12deg) scale(1.06);
+}
+
+.s-card-body {
+  display: grid;
+  gap: 14px;
+}
+
+.s-title {
+  font-size: clamp(1.9rem, 2.9vw, 2.7rem);
+  line-height: 1;
+}
+
+.s-blurb {
+  max-width: 34ch;
+  font-size: 0.98rem;
+  color: var(--text-dim);
+}
+
+.s-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.s-tags li {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.66rem;
+}
+
+.s-card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--accent-bright);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
+}
+
+.s-card-more svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.s-card:hover .s-card-more,
+.s-card:focus-visible .s-card-more {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.s-card:hover .s-card-more svg,
+.s-card:focus-visible .s-card-more svg {
+  transform: translateX(4px);
+}
+
+/* Closing panel in the reel */
+.s-end {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: clamp(300px, 34vw, 480px);
+  padding-right: var(--gutter);
+}
+
+.s-end p {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1;
+  color: var(--text);
+}
+
+@media (max-width: 899px) {
+  .services-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .services-word {
+    display: none;
+  }
+
+  .services-track {
+    padding-inline: var(--gutter);
+  }
+}
+
+/* card wrapper in the pinned reel (scroll-driven scale / tilt) */
+.s-reel-item {
+  flex: none;
+  will-change: transform, opacity;
+}

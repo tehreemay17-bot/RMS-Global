@@ -1,0 +1,142 @@
+.brands {
+  background:
+    radial-gradient(55% 45% at 10% 90%, rgb(var(--plum-rgb) / 0.26), transparent 70%),
+    var(--bg-2);
+  overflow: clip;
+}
+
+.brands-accent {
+  color: var(--accent-bright);
+  text-shadow: 0 0 0.26em var(--accent-glow);
+}
+
+.brands-head .section-title {
+  font-size: clamp(2.6rem, 6.6vw, 6rem);
+}
+
+.brands-head .lead {
+  margin-top: 4px;
+}
+
+/* ---------- the wall ---------- */
+.brand-wall {
+  position: relative;
+  margin-top: clamp(48px, 7vw, 88px);
+  padding-block: 6px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.brand-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.brand-group {
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(20px, 2.6vw, 36px);
+  padding-inline: clamp(10px, 1.3vw, 18px);
+}
+
+/* ---------- one framed poster ---------- */
+.brand-card {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  flex: none;
+  width: clamp(300px, 34vw, 440px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  box-shadow: 0 30px 70px -30px rgb(var(--shadow-rgb) / 0.7);
+  isolation: isolate;
+  transition: transform 0.6s var(--ease-out), border-color 0.4s ease, box-shadow 0.6s ease;
+}
+
+.brand-wall:not(.is-hover) .brand-card {
+  animation: brand-breathe 7s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -1.4s);
+}
+
+.brand-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: var(--accent);
+  box-shadow: 0 40px 90px -28px var(--accent-glow);
+}
+
+.brand-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--mx) var(--my), rgb(var(--accent-rgb) / 0.28), transparent 65%);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.brand-card:hover .brand-card-glow {
+  opacity: 1;
+}
+
+.brand-card img {
+  display: block;
+  width: 100%;
+  height: clamp(210px, 24vw, 300px);
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 1s var(--ease-out), filter 0.4s ease;
+}
+
+.brand-card:hover img {
+  transform: scale(1.05);
+}
+
+/* the logo walls carry their own dark-purple background; a small brightness/saturation lift in
+   light mode keeps that panel from reading as a heavy, disconnected block against a light page */
+:root[data-theme='light'] .brand-card img {
+  filter: brightness(1.06) saturate(0.94);
+}
+
+.brand-card figcaption {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.brand-card figcaption .label {
+  color: var(--accent-bright);
+}
+
+@keyframes brand-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-card {
+    animation: none;
+  }
+}
+
+@media (max-width: 719px) {
+  .brand-card {
+    width: 78vw;
+  }
+
+  .brand-card img {
+    height: 44vw;
+  }
+}

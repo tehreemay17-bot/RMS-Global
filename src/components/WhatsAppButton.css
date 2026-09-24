@@ -1,0 +1,87 @@
+.wa-fab {
+  position: fixed;
+  left: 18px;
+  bottom: 22px;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 10px 30px -8px rgb(0 0 0 / 0.5);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.wa-fab:hover {
+  background: #20bd5a;
+  box-shadow: 0 14px 38px -8px rgb(37 211 102 / 0.6);
+}
+
+.wa-fab-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.wa-fab-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  opacity: 0.55;
+  animation: wa-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes wa-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  75%, 100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.wa-fab-tip {
+  position: absolute;
+  left: 62px;
+  top: 50%;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(var(--bg-rgb) / 0.9);
+  color: var(--text);
+  font-size: 0.62rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-8px, -50%);
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+.wa-fab:hover .wa-fab-tip,
+.wa-fab:focus-visible .wa-fab-tip {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 719px) {
+  .wa-fab {
+    left: 14px;
+    bottom: 18px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .wa-fab-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .wa-fab-tip {
+    display: none;
+  }
+}
