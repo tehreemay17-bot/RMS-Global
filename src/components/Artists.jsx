@@ -92,9 +92,8 @@ function Card({ item, index, d, size, onSelect, fx }) {
         rotateY: -side * Math.min(a * 26, 54),
         scale: 1 - Math.min(a, 3) * 0.06,
         opacity: visible ? 1 : 0,
-        filter: `brightness(${1 - Math.min(a, 3) * 0.2})`,
       }}
-      transition={{ type: 'spring', stiffness: 120, damping: 21, mass: 0.95 }}
+      transition={{ type: 'spring', stiffness: 170, damping: 26, mass: 0.8 }}
       onClick={() => onSelect(index, d)}
       tabIndex={visible ? 0 : -1}
       aria-hidden={!visible}
@@ -103,6 +102,15 @@ function Card({ item, index, d, size, onSelect, fx }) {
       <div className="artist-card-tilt" onPointerMove={onMove} onPointerLeave={onLeave}>
         {isActive && <span className="artist-card-edge" aria-hidden="true" />}
         <img src={item.src} alt="" draggable="false" loading={a <= 2 ? 'eager' : 'lazy'} />
+        {/* Cards recede into shadow further from centre — a plain opacity overlay reads the same as the
+            filter:brightness() this replaced, but is far cheaper to animate alongside the 3D transform above. */}
+        <motion.span
+          className="artist-card-dim"
+          aria-hidden="true"
+          initial={false}
+          animate={{ opacity: Math.min(a, 3) * 0.22 }}
+          transition={{ type: 'spring', stiffness: 170, damping: 26, mass: 0.8 }}
+        />
         <span className="artist-card-shine" aria-hidden="true" />
         <span className="artist-shade" aria-hidden="true" />
         <span className="artist-card-info" aria-hidden="true">
@@ -274,9 +282,14 @@ export default function Artists() {
             transition={{ duration: 1.3, ease: EASE }}
           >
             <div className="artist-track">
-              {ARTISTS.map((item, i) => (
-                <Card key={item.src} item={item} index={i} d={offsetOf(i, active)} size={size} onSelect={select} fx={fx} />
-              ))}
+              {ARTISTS.map((item, i) => {
+                const d = offsetOf(i, active)
+                // Cards past this stay invisible/non-interactive anyway (see `visible` in Card) — not
+                // mounting them at all means far fewer simultaneous 3D-transform springs to run per
+                // slide change, with zero visual difference.
+                if (Math.abs(d) > 4) return null
+                return <Card key={item.src} item={item} index={i} d={d} size={size} onSelect={select} fx={fx} />
+              })}
               {!reduce && <Sparkles key={active} />}
             </div>
           </motion.div>
