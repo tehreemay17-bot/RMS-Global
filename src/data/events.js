@@ -31,13 +31,11 @@ export const PLACEHOLDER_EVENTS = [
     place: 'Lahore',
     year: 2025,
     blurb: 'Branded stages, LED walls and launch nights: the corporate side of RMS.',
-    // The original highlight video is kept; everything else comes from your "events" folder
-    // (2 real highlight videos + 3 photos — no poster images needed, MediaTile shows a frame
-    // from each video automatically).
+    // Videos use a poster image so the tile never touches the video file until it is played.
     items: [
-      { type: 'video', src: '/media/collab/gala-video.mp4', alt: 'Corporate event highlight video' },
-      { type: 'video', src: evc('video-aiko-solar.mp4'), alt: 'Aiko x Solar Pakistan, Day 1 highlight video' },
-      { type: 'video', src: evc('video-carrefour.mp4'), alt: 'Carrefour activation, Day 3 highlight video' },
+      { type: 'video', src: '/media/collab/gala-video.mp4', poster: '/media/collab/gala-poster.jpg', alt: 'Corporate event highlight video' },
+      { type: 'video', src: evc('video-aiko-solar.mp4'), poster: evc('poster-aiko-solar.jpg'), alt: 'Aiko x Solar Pakistan, Day 1 highlight video' },
+      { type: 'video', src: evc('video-carrefour.mp4'), poster: evc('poster-carrefour.jpg'), alt: 'Carrefour activation, Day 3 highlight video' },
       { type: 'image', src: evc('photo-01.jpg'), alt: 'Event coverage photo' },
       { type: 'image', src: evc('photo-02.jpg'), alt: 'Event coverage photo' },
       { type: 'image', src: evc('photo-03.jpg'), alt: 'Event coverage photo' },

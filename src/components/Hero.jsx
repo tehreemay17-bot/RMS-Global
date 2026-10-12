@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   motion,
-  useMotionTemplate,
   useMotionValue,
   useReducedMotion,
   useScroll,
@@ -48,17 +47,16 @@ export default function Hero({ ready }) {
   const sealY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120])
 
   // Cursor spotlight
-  const mx = useMotionValue(50)
-  const my = useMotionValue(60)
+  const mx = useMotionValue(0) // offsets in px from the glow's resting spot (50% / 60% of the hero)
+  const my = useMotionValue(0)
   const sx = useSpring(mx, { stiffness: 60, damping: 18 })
   const sy = useSpring(my, { stiffness: 60, damping: 18 })
-  const spot = useMotionTemplate`radial-gradient(520px circle at ${sx}% ${sy}%, rgba(169,112,255,0.22), transparent 62%)`
 
   const onMove = (e) => {
     if (reduce || e.pointerType === 'touch') return
     const r = ref.current.getBoundingClientRect()
-    mx.set(((e.clientX - r.left) / r.width) * 100)
-    my.set(((e.clientY - r.top) / r.height) * 100)
+    mx.set(e.clientX - r.left - r.width * 0.5)
+    my.set(e.clientY - r.top - r.height * 0.6)
   }
 
   // Autoplay only while on screen, never under reduced motion, and only if the viewer hasn't paused it.
@@ -110,7 +108,7 @@ export default function Hero({ ready }) {
           />
         )}
         <div className="hero-veil" />
-        <motion.div className="hero-spot" style={{ background: spot }} />
+        <motion.div className="hero-spot" style={{ x: sx, y: sy }} />
       </motion.div>
 
       <motion.div className="hero-content container" style={{ y: textY, opacity: textOpacity }}>

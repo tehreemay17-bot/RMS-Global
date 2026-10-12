@@ -35,9 +35,15 @@
 
 .hero-spot {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 60%;
+  width: 1040px;
+  height: 1040px;
+  margin: -520px 0 0 -520px;
+  background: radial-gradient(circle closest-side, rgba(169, 112, 255, 0.22), transparent 62%);
   mix-blend-mode: screen;
   pointer-events: none;
+  will-change: transform;
 }
 
 .hero-fallback {
