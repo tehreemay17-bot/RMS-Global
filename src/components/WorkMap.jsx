@@ -347,7 +347,7 @@ export default function WorkMap() {
       <div className="container work-head">
         <div className="work-head-main">
           <Reveal as="p" className="eyebrow" y={16}>
-            03 — Where we&rsquo;ve worked
+            04 — Where we&rsquo;ve worked
           </Reveal>
           <h2 className="section-title display">
             <SplitText

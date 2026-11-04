@@ -1,7 +1,9 @@
 import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { BRAND } from '../config'
 import { EVENT_META, PLACEHOLDER_EVENTS } from '../data/events'
 import Lightbox from './Lightbox'
+import Magnetic from './Magnetic'
 import MediaTile from './MediaTile'
 import Reveal from './Reveal'
 import SplitText from './SplitText'
@@ -43,6 +45,7 @@ function buildEventsFromFiles() {
     .map(([key, list]) => ({
       id: key,
       title: EVENT_META[key]?.title || titleCase(key),
+      category: EVENT_META[key]?.category,
       place: EVENT_META[key]?.place,
       year: EVENT_META[key]?.year,
       blurb: EVENT_META[key]?.blurb,
@@ -65,10 +68,17 @@ function spanFor(i, total) {
   return { gridColumn: `span ${map.c}`, gridRow: `span ${map.r}` }
 }
 
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`
+
+// "20 photos" or "3 films, 3 photos"
+function countLabel(items) {
+  const films = items.filter((m) => m.type === 'video').length
+  const photos = items.length - films
+  return [films && plural(films, 'film'), photos && plural(photos, 'photo')].filter(Boolean).join(', ')
+}
+
 function EventGroup({ event, index, onOpenPhoto }) {
-  const meta = [event.place, event.year, `${event.items.length} ${event.items.length === 1 ? 'item' : 'items'}`]
-    .filter(Boolean)
-    .join(' · ')
+  const meta = [event.place, event.year, countLabel(event.items)].filter(Boolean).join(' · ')
 
   // the big outlined number fills with colour as you scroll through the event
   const ref = useRef(null)
@@ -94,6 +104,11 @@ function EventGroup({ event, index, onOpenPhoto }) {
             {num}
           </motion.span>
         </span>
+        {event.category && (
+          <Reveal as="p" className="label event-cat" y={10}>
+            {event.category}
+          </Reveal>
+        )}
         <h3 className="event-title display">
           <SplitText parts={event.title} by="word" stagger={0.05} />
         </h3>
@@ -133,35 +148,45 @@ export default function Events() {
   const [filter, setFilter] = useState('all')
   const [lb, setLb] = useState(null)
 
+  const films = events.reduce((n, e) => n + e.items.filter((m) => m.type === 'video').length, 0)
+  // a photo used in two projects is counted once
+  const photos = new Set(events.flatMap((e) => e.items.filter((m) => m.type === 'image').map((m) => m.src))).size
+  const stats = [
+    { n: events.length, label: 'Projects shown' },
+    { n: photos, label: 'Photos' },
+    { n: films, label: 'Films' },
+    { n: `Est. ${BRAND.est}`, label: 'Lahore, Pakistan' },
+  ]
+
   const shown = filter === 'all' ? events : events.filter((e) => e.id === filter)
   const lbEvent = lb ? events.find((e) => e.id === lb.id) : null
   const lbPhotos = lbEvent ? lbEvent.items.filter((m) => m.type === 'image') : []
 
   return (
-    <motion.section ref={sectionRef} id="events" className="events section" style={entrance}>
-      <Watermark text="Events" align="top" from="22%" to="-48%" />
+    <motion.section ref={sectionRef} id="portfolio" className="events section" style={entrance}>
+      <Watermark text="Portfolio" align="top" from="22%" to="-48%" />
       <div className="hairline" aria-hidden="true" />
 
       <div className="container">
         <div className="section-head events-head">
           <Reveal as="p" className="eyebrow" y={16}>
-            04 — Events we&rsquo;ve covered
+            01 — Our portfolio
           </Reveal>
           <h2 className="section-title display">
             <SplitText
-              parts={['Nights worth', { br: true }, { t: 'remembering.', className: 'serif events-accent' }]}
+              parts={['Work we’ve', { br: true }, { t: 'delivered.', className: 'serif events-accent' }]}
               by="word"
               stagger={0.07}
             />
           </h2>
           <div className="events-tools">
             <Reveal as="p" className="lead" y={20} delay={0.1}>
-              A look behind the curtain: photos and films from the events we&rsquo;ve produced, grouped by night. Tap a
+              Launches, concerts, corporate activations and the nights behind them. Browse project by project, tap a
               photo to enlarge it or a film to play.
             </Reveal>
             <LayoutGroup id="event-filters">
-              <div className="filters" role="group" aria-label="Filter events">
-                {[{ id: 'all', title: 'All events' }, ...events].map((e) => (
+              <div className="filters" role="group" aria-label="Browse projects">
+                {[{ id: 'all', title: 'All work' }, ...events].map((e, i) => (
                   <button
                     key={e.id}
                     type="button"
@@ -176,13 +201,25 @@ export default function Events() {
                         transition={{ type: 'spring', stiffness: 400, damping: 34 }}
                       />
                     )}
-                    <span>{e.title}</span>
+                    <span>
+                      {i > 0 && <b className="filter-n">{String(i).padStart(2, '0')}</b>}
+                      {e.title}
+                    </span>
                   </button>
                 ))}
               </div>
             </LayoutGroup>
           </div>
         </div>
+
+        <ul className="pf-stats" aria-label="Portfolio at a glance">
+          {stats.map((st) => (
+            <Reveal as="li" key={st.label} className="pf-stat" y={20}>
+              <span className="pf-stat-n display">{st.n}</span>
+              <span className="label">{st.label}</span>
+            </Reveal>
+          ))}
+        </ul>
 
         <div className="event-list">
           <AnimatePresence mode="popLayout" initial={false}>
@@ -197,6 +234,22 @@ export default function Events() {
               />
             ))}
           </AnimatePresence>
+        </div>
+
+        <div className="pf-cta">
+          <Reveal as="p" className="pf-cta-text display" y={20}>
+            Have a project in mind?
+          </Reveal>
+          <Reveal y={20} delay={0.1}>
+            <Magnetic>
+              <a href="#book" className="btn-cta">
+                <span>Start a project</span>
+                <svg className="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </Magnetic>
+          </Reveal>
         </div>
       </div>
 

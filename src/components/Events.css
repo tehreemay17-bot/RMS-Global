@@ -122,3 +122,114 @@
   }
 }
 
+
+/* ---------- portfolio additions ---------- */
+
+/* the project index chips carry their number */
+.filter-n {
+  margin-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.65;
+}
+
+.filter.is-on .filter-n {
+  opacity: 1;
+}
+
+/* category label above each project title */
+.event-cat {
+  color: var(--text-dim);
+}
+
+.event-cat::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: var(--accent);
+}
+
+/* portfolio at a glance */
+.pf-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 clamp(72px, 9vw, 130px);
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--line);
+}
+
+.pf-stat {
+  display: grid;
+  gap: 6px;
+  padding: clamp(18px, 2.4vw, 30px) clamp(12px, 2vw, 28px);
+}
+
+.pf-stat + .pf-stat {
+  border-left: 1px solid var(--line);
+}
+
+.pf-stat-n {
+  font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+  line-height: 1;
+}
+
+.pf-stat .label {
+  color: var(--text-dim);
+}
+
+/* closing call to action */
+.pf-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-top: clamp(90px, 12vw, 190px);
+  padding-top: clamp(28px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+}
+
+.pf-cta-text {
+  font-size: clamp(1.7rem, 3.6vw, 3.2rem);
+  line-height: 1.05;
+}
+
+@media (max-width: 640px) {
+  .pf-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pf-stat:nth-child(3) {
+    border-left: 0;
+  }
+
+  .pf-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* phones: the project index is one swipeable row instead of a tall wrapped pill */
+@media (max-width: 640px) {
+  .events-tools .filters {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .events-tools .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .events-tools .filter {
+    flex: none;
+    white-space: nowrap;
+  }
+}

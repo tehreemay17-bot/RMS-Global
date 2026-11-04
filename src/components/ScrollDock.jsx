@@ -7,10 +7,10 @@ import './ScrollDock.css'
 
 const STOPS = [
   { id: 'hero', label: 'Intro' },
+  { id: 'portfolio', label: 'Portfolio' },
   { id: 'services', label: 'Services' },
   { id: 'about', label: 'About' },
   { id: 'work', label: 'Where we work' },
-  { id: 'events', label: 'Events' },
   { id: 'artists', label: 'Artists' },
   { id: 'brands', label: 'Brands' },
   { id: 'book', label: 'Book a meeting' },

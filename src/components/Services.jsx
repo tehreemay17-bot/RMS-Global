@@ -188,7 +188,7 @@ export default function Services() {
         <div className="services-head container">
           <div className="services-head-main">
             <Reveal as="p" className="eyebrow" y={16}>
-              01 — What we do
+              02 — What we do
             </Reveal>
             <h2 className="section-title display services-title">
               <SplitText parts={HEADING} by="word" stagger={0.06} />

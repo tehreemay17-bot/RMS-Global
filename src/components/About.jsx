@@ -151,7 +151,7 @@ export default function About() {
       <div className="container about-grid">
         <div className="about-copy">
           <Reveal as="p" className="eyebrow" y={16}>
-            02 — About {BRAND.name}
+            03 — About {BRAND.name}
           </Reveal>
 
           <p ref={statementRef} className="about-statement display" aria-label={STATEMENT.map((s) => s.w).join(' ')}>

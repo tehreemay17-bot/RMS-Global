@@ -163,8 +163,8 @@ export default function Hero({ ready }) {
               </a>
             </Magnetic>
             <Magnetic>
-              <a href="#work" className="btn-ghost">
-                <span>See where we work</span>
+              <a href="#portfolio" className="btn-ghost">
+                <span>See our portfolio</span>
               </a>
             </Magnetic>
           </motion.div>

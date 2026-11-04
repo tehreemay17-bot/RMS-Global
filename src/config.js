@@ -10,10 +10,10 @@ export const BRAND = {
 
 // id must match the id of the section it scrolls to
 export const NAV_LINKS = [
+  { id: 'portfolio', label: 'Portfolio' },
   { id: 'services', label: 'Services' },
   { id: 'about', label: 'About' },
   { id: 'work', label: 'Where We Work' },
-  { id: 'events', label: 'Events' },
   { id: 'artists', label: 'Artists' },
   { id: 'brands', label: 'Brands' },
 ]

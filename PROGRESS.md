@@ -31,6 +31,13 @@ Measured first: a Lighthouse mobile test of the live site scored 52/100 (first c
 - The hero video is no longer downloaded on phones (640 px or narrower), Data Saver, or 2G/3G connections: they keep the poster image. Desktop on a normal connection is unchanged.
 - Checked: lint passes, build passes, all 150 media paths in the data files exist, Malkoo blocks render in the preview.
 
+### 4. Portfolio section moved up (2026-11-04)
+- The old "Events" section is now **"01 — Our portfolio"**, the second section right after the hero (id `portfolio`). It cannot go third: Services and About are visually coupled (pinned Services, sticky About background).
+- Page order: Hero, Portfolio, Services, About, Where we work, Artists, Brands, Book, Contact. Section numbers were renumbered (Services 02, About 03, Where we work 04). Nav, scroll dock and footer links now say "Portfolio"; the hero ghost button now reads "See our portfolio".
+- Portfolio layout: headline "Work we've delivered.", a numbered project index (All work, 01 Malkoo Perfumes Launch, 02 Events and Coverages, 03 Our Recent Projects, 04 Behind the Scenes; swipeable row on phones), an at-a-glance strip (projects, photos, films, Est. 1994, all computed from the data), each project with a category label above its title and a "20 photos" style count, and a "Have a project in mind? Start a project" button at the end.
+- To edit projects: `src/data/events.js` (order, `category`, title, blurb). Order in the file is the order on the page.
+- Known overlap: 6 Malkoo launch photos appear in both "Malkoo Perfumes Launch" and "Our Recent Projects". The photo count counts each file once.
+
 ## Not finished: verify before merging
 
 1. **Before/after speed test was interrupted.** The plan was to build the old and new versions side by side and run the same Lighthouse test three times each. Not done, so the speed gain is not yet measured.

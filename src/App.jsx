@@ -40,13 +40,13 @@ function App() {
       <WhatsAppButton ready={ready} />
       <main>
         <Hero ready={ready} />
+        <Suspense fallback={fallback('portfolio')}>
+          <Events />
+        </Suspense>
         <Services />
         <About />
         <Suspense fallback={fallback('work')}>
           <WorkMap />
-        </Suspense>
-        <Suspense fallback={fallback('events')}>
-          <Events />
         </Suspense>
         <Suspense fallback={fallback('artists')}>
           <Artists />
