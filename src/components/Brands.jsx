@@ -11,6 +11,7 @@ import {
   useVelocity,
 } from 'motion/react'
 import { BRAND_WALLS } from '../data/brands'
+import Lightbox from './Lightbox'
 import Reveal from './Reveal'
 import SplitText from './SplitText'
 import Watermark from './Watermark'
@@ -23,7 +24,7 @@ const wrap = (min, max, v) => {
   return ((((v - min) % range) + range) % range) + min
 }
 
-function BrandCard({ wall, index }) {
+function BrandCard({ wall, index, onOpen }) {
   const onMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect()
     e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
@@ -32,7 +33,14 @@ function BrandCard({ wall, index }) {
   return (
     <figure className="brand-card" style={{ '--i': index }} onPointerMove={onMove}>
       <span className="brand-card-glow" aria-hidden="true" />
-      <img src={wall.src} alt={wall.alt} loading="lazy" draggable="false" />
+      <button type="button" className="brand-card-btn" onClick={() => onOpen(index)} aria-label={`Open logos: ${wall.sector}`}>
+        <img src={wall.src} alt={wall.alt} loading="lazy" decoding="async" draggable="false" />
+        <span className="brand-card-zoom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </span>
+      </button>
       <figcaption>
         <span className="label">{String(index + 1).padStart(2, '0')}</span>
         <span>{wall.sector}</span>
@@ -63,6 +71,8 @@ export default function Brands() {
   const dir = useRef(-1)
   const pos = useMotionValue(0) // percent of one group: 0 .. -100
   const [hover, setHover] = useState(false)
+  const [lb, setLb] = useState(null)
+  const justDragged = useRef(false)
 
   const { scrollY } = useScroll()
   const smooth = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 })
@@ -79,22 +89,32 @@ export default function Brands() {
 
   const x = useTransform(pos, (v) => `${v / 2}%`)
 
+  // Open the viewer only for a real click, not at the end of a swipe/drag of the wall.
+  const openWall = (i) => {
+    if (!justDragged.current) setLb(i)
+  }
+
   const onPanStart = () => {
     dragging.current = true
     groupWidth.current = groupRef.current?.getBoundingClientRect().width || 1
   }
   const onPan = (_, info) => {
+    if (Math.abs(info.offset.x) > 6) justDragged.current = true
     const deltaPct = (info.delta.x / groupWidth.current) * 100
     pos.set(wrap(-100, 0, pos.get() + deltaPct))
   }
   const onPanEnd = () => {
     dragging.current = false
+    // the click that ends a drag arrives right after; clear the flag only once it has passed
+    setTimeout(() => {
+      justDragged.current = false
+    }, 250)
   }
 
   const group = (
     <div className="brand-group">
       {BRAND_WALLS.map((wall, i) => (
-        <BrandCard key={wall.src} wall={wall} index={i} />
+        <BrandCard key={wall.src} wall={wall} index={i} onOpen={openWall} />
       ))}
     </div>
   )
@@ -132,6 +152,9 @@ export default function Brands() {
           paused.current = false
           setHover(false)
         }}
+        onPointerDown={() => {
+          justDragged.current = false
+        }}
         onPanStart={onPanStart}
         onPan={onPan}
         onPanEnd={onPanEnd}
@@ -139,12 +162,14 @@ export default function Brands() {
         <motion.div className="brand-track" style={{ x }}>
           <div ref={groupRef} className="brand-group">
             {BRAND_WALLS.map((wall, i) => (
-              <BrandCard key={wall.src} wall={wall} index={i} />
+              <BrandCard key={wall.src} wall={wall} index={i} onOpen={openWall} />
             ))}
           </div>
           {group}
         </motion.div>
       </motion.div>
+
+      <Lightbox items={BRAND_WALLS} index={lb} onClose={() => setLb(null)} onIndex={setLb} />
     </motion.section>
   )
 }
