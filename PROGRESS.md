@@ -24,6 +24,13 @@ Measured first: a Lighthouse mobile test of the live site scored 52/100 (first c
 - Smooth-scroll (Lenis) is now OFF by default (it felt laggy and runs on every frame). Visitors can still switch it on in the scroll dock. (`src/hooks/useScrollPrefs.js`)
 - Animations the browser had to repaint every frame were rewritten to GPU-friendly versions with the same look: the spinning gradient borders on the booking card and active artist card (now a rotating layer), the video play-button pulse, and the hero scroll hint. The pulsing glow on the active artist card was removed. The booking card's blur (invisible, since its background is solid) was removed.
 
+### 3. Second pass (2026-11-04, later)
+- **Malkoo event photos in the project portfolio**: 6 launch-night photos (stage crew, performers, media wall, perfume display, cake crowd, hosts) were added to "Our Recent Projects" (now 13 items), and 2 to the Lahore pin on the map. A "Malkoo Perfumes Campaign" block with the 6 product ads was built and then removed on request (product pictures are not wanted in the portfolio); those poster files were deleted from the project, originals stay in `C:\Users\bilal\Downloads\Malkoo`. The 5 videos and the 44 MB `.MOV` are still left out (too heavy; say if you want one added).
+- **All portfolio photos converted JPG to WebP** (max 1400 px wide): 16.0 MB down to 8.3 MB (about 48% less) with no visible change. The old `.jpg` files in `public/media` were removed; `hero-poster.jpg`, `og-image.jpg` and `logo.png` stay as they are (social previews need JPG/PNG). To add a photo, convert it to WebP and add it to the data file in `src/data/`.
+- Gallery images now decode off the main thread (`decoding="async"`).
+- The hero video is no longer downloaded on phones (640 px or narrower), Data Saver, or 2G/3G connections: they keep the poster image. Desktop on a normal connection is unchanged.
+- Checked: lint passes, build passes, all 150 media paths in the data files exist, Malkoo blocks render in the preview.
+
 ## Not finished: verify before merging
 
 1. **Before/after speed test was interrupted.** The plan was to build the old and new versions side by side and run the same Lighthouse test three times each. Not done, so the speed gain is not yet measured.

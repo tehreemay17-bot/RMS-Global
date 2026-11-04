@@ -12,8 +12,9 @@
 // Each country is shown with one pin (its capital or best-known event city). Swap the city/coords if you worked elsewhere.
 // The pin's country label and the "countries" count on the page update automatically.
 
-const pic = (n) => `/media/pics/pic-${String(n).padStart(2, '0')}.jpg`
-const gala = (n) => `/media/collab/gala-${String(n).padStart(2, '0')}.jpg`
+const pic = (n) => `/media/pics/pic-${String(n).padStart(2, '0')}.webp`
+const mk = (n) => `/media/malkoo/malkoo-${String(n).padStart(2, '0')}.webp`
+const gala = (n) => `/media/collab/gala-${String(n).padStart(2, '0')}.webp`
 // PLACEHOLDER video: reuses the hero reel until you add real city videos.
 const PLACEHOLDER_VIDEO = '/hero-video.mp4'
 
@@ -34,6 +35,8 @@ export const CITIES = [
     stats: { events: 120, since: 1994 }, // PLACEHOLDER numbers
     // ─────────── ADD LAHORE'S REAL PHOTOS AND VIDEOS HERE ───────────
     media: [
+      photo(mk(1), 'RMS crew and guests on stage at the Malkoo Perfumes launch, Lahore'),
+      photo(mk(12), 'Guests at the RMS and Malkoo branded media wall in Lahore'),
       photo(pic(13), 'Studio shoot with artists in Lahore'),
       photo(pic(19), 'Event poster for a live performance in Lahore'),
       video(pic(10), 'Group selfie backstage'),

@@ -64,6 +64,10 @@ export default function Hero({ ready }) {
   useEffect(() => {
     const v = videoRef.current
     if (!v || reduce || failed) return undefined
+    // Visitors on Data Saver, a slow connection or a small phone screen keep the poster image: no 2 MB video.
+    const conn = navigator.connection
+    const lean = conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || conn.effectiveType === '3g')
+    if (lean || window.matchMedia('(max-width: 640px)').matches) return undefined
     const load = () => {
       if (v.getAttribute('src')) return
       v.src = '/hero-video.mp4'

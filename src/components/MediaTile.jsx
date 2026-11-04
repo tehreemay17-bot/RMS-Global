@@ -73,6 +73,7 @@ export default function MediaTile({ item, index = 0, onOpen, className = '', sty
                 src={isVideo ? item.poster : item.src}
                 alt=""
                 loading={eager ? 'eager' : 'lazy'}
+                decoding="async"
                 draggable="false"
               />
             )}

@@ -1,7 +1,7 @@
 // "Brands we've worked with": each entry is one logo-wall image from your "brands" folder.
 // To add another panel, drop a new image into public/media/brands/ and add a line below.
 
-const b = (n) => `/media/brands/brands-${String(n).padStart(2, '0')}.jpg`
+const b = (n) => `/media/brands/brands-${String(n).padStart(2, '0')}.webp`
 
 export const BRAND_WALLS = [
   { src: b(1), sector: 'FMCG, retail & telecom', alt: 'Logos of FMCG, retail and telecom brands RMS has worked with' },

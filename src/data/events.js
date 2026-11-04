@@ -21,9 +21,9 @@ export const EVENT_META = {
 }
 
 const evc = (name) => `/media/events-coverages/${name}`
-const gal = (n) => `/media/gallery/gallery-${String(n).padStart(2, '0')}.jpg`
-const mk = (n) => `/media/malkoo/malkoo-${String(n).padStart(2, '0')}.jpg`
-const proj = (n) => `/media/recent-projects/project-${String(n).padStart(2, '0')}.jpg`
+const gal = (n) => `/media/gallery/gallery-${String(n).padStart(2, '0')}.webp`
+const mk = (n) => `/media/malkoo/malkoo-${String(n).padStart(2, '0')}.webp`
+const proj = (n) => `/media/recent-projects/project-${String(n).padStart(2, '0')}.webp`
 
 export const PLACEHOLDER_EVENTS = [
   {
@@ -34,12 +34,12 @@ export const PLACEHOLDER_EVENTS = [
     blurb: 'Branded stages, LED walls and launch nights: the corporate side of RMS.',
     // Videos use a poster image so the tile never touches the video file until it is played.
     items: [
-      { type: 'video', src: '/media/collab/gala-video.mp4', poster: '/media/collab/gala-poster.jpg', alt: 'Corporate event highlight video' },
-      { type: 'video', src: evc('video-aiko-solar.mp4'), poster: evc('poster-aiko-solar.jpg'), alt: 'Aiko x Solar Pakistan, Day 1 highlight video' },
-      { type: 'video', src: evc('video-carrefour.mp4'), poster: evc('poster-carrefour.jpg'), alt: 'Carrefour activation, Day 3 highlight video' },
-      { type: 'image', src: evc('photo-01.jpg'), alt: 'Event coverage photo' },
-      { type: 'image', src: evc('photo-02.jpg'), alt: 'Event coverage photo' },
-      { type: 'image', src: evc('photo-03.jpg'), alt: 'Event coverage photo' },
+      { type: 'video', src: '/media/collab/gala-video.mp4', poster: '/media/collab/gala-poster.webp', alt: 'Corporate event highlight video' },
+      { type: 'video', src: evc('video-aiko-solar.mp4'), poster: evc('poster-aiko-solar.webp'), alt: 'Aiko x Solar Pakistan, Day 1 highlight video' },
+      { type: 'video', src: evc('video-carrefour.mp4'), poster: evc('poster-carrefour.webp'), alt: 'Carrefour activation, Day 3 highlight video' },
+      { type: 'image', src: evc('photo-01.webp'), alt: 'Event coverage photo' },
+      { type: 'image', src: evc('photo-02.webp'), alt: 'Event coverage photo' },
+      { type: 'image', src: evc('photo-03.webp'), alt: 'Event coverage photo' },
     ],
   },
   {
@@ -66,7 +66,7 @@ export const PLACEHOLDER_EVENTS = [
     id: 'our-recent-projects',
     title: 'Our Recent Projects',
     blurb: 'A look at the live shows, campaigns and promos we have delivered lately.',
-    // All 7 photos, only from your "Our recent projects" folder.
+    // The 7 posters from the "Our recent projects" folder, then highlights from the Malkoo Perfumes launch.
     items: [
       { type: 'image', src: proj(1), alt: 'PGC Music Festival poster: Farhan Saeed, Aima Baig, Bilal Saeed, hosted by Musaddaq Munir' },
       { type: 'image', src: proj(2), alt: 'PGC Music Festival poster: Aima Baig, Bilal Saeed and Musaddiq Munir live at PGC Phalia and Wazirabad' },
@@ -75,6 +75,12 @@ export const PLACEHOLDER_EVENTS = [
       { type: 'image', src: proj(5), alt: 'Event poster: Sufi Night' },
       { type: 'image', src: proj(6), alt: 'Event poster: music festival campaign' },
       { type: 'image', src: proj(7), alt: 'Asrar live in concert in Dallas, Texas' },
+      { type: 'image', src: mk(1), alt: 'RMS crew and guests on stage at the Malkoo Perfumes launch, Lahore' },
+      { type: 'image', src: mk(11), alt: 'Performers on stage under blue lights at the Malkoo Perfumes launch' },
+      { type: 'image', src: mk(12), alt: 'Guests at the RMS and Malkoo branded media wall' },
+      { type: 'image', src: mk(9), alt: 'Guests with Malkoo perfume boxes at the display table' },
+      { type: 'image', src: mk(13), alt: 'Crowd around the launch cake and perfume display' },
+      { type: 'image', src: mk(3), alt: 'Hosts at the podium of Faletti\'s Hotel, Lahore' },
     ],
   },
   {

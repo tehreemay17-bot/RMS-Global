@@ -7,7 +7,7 @@
 //   (the description then becomes the small caption). Example:
 //       { src: '/media/artists/artist-03.jpg', title: 'Wedding stage', name: 'Artist Name' }
 
-const a = (n) => `/media/artists/artist-${String(n).padStart(2, '0')}.jpg`
+const a = (n) => `/media/artists/artist-${String(n).padStart(2, '0')}.webp`
 
 export const ARTISTS = [
   { src: a(1), title: 'Crowd at the stage' },
