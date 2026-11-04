@@ -1,14 +1,15 @@
 import { useSyncExternalStore } from 'react'
 
-// Visitor preference: inertial "smooth scrolling" on/off. On by default; saved in localStorage.
+// Visitor preference: inertial "smooth scrolling" on/off. OFF by default (native scrolling is the fastest and most
+// responsive; the inertia layer felt laggy and costs work on every frame); saved in localStorage.
 const KEY = 'rms-smooth-scroll'
 const listeners = new Set()
 
 function read() {
   try {
-    return localStorage.getItem(KEY) !== 'off'
+    return localStorage.getItem(KEY) === 'on'
   } catch {
-    return true
+    return false
   }
 }
 
@@ -31,6 +32,6 @@ export default function useSmoothScrollPref() {
       return () => listeners.delete(cb)
     },
     () => smooth,
-    () => true,
+    () => false,
   )
 }

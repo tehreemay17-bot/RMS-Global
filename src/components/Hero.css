@@ -217,9 +217,10 @@
   content: '';
   position: absolute;
   left: 0;
-  top: -40%;
+  top: 0;
   width: 100%;
   height: 40%;
+  transform: translateY(-100%);
   background: var(--accent);
   box-shadow: 0 0 10px var(--accent-glow);
   animation: drip 2.2s var(--ease-cine) infinite;
@@ -227,7 +228,7 @@
 
 @keyframes drip {
   to {
-    top: 110%;
+    transform: translateY(275%);
   }
 }
 

@@ -101,7 +101,7 @@ function Card({ item, index, d, size, onSelect, fx }) {
     >
       <div className="artist-card-tilt" onPointerMove={onMove} onPointerLeave={onLeave}>
         {isActive && <span className="artist-card-edge" aria-hidden="true" />}
-        <img src={item.src} alt="" draggable="false" loading={a <= 2 ? 'eager' : 'lazy'} />
+        <img src={item.src} alt="" draggable="false" loading="lazy" />
         {/* Cards recede into shadow further from centre — a plain opacity overlay reads the same as the
             filter:brightness() this replaced, but is far cheaper to animate alongside the 3D transform above. */}
         <motion.span

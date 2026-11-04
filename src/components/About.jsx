@@ -111,17 +111,19 @@ export default function About() {
   const bgScale = useTransform(bgP, [0, 1], [1.02, zoomEnd])
   const bgY = useTransform(bgP, [0, 1], [0, driftEnd])
 
-  // Autoplay only while the section is actually on screen, and never under reduced motion.
+  // The video is only fetched when the section is about to scroll into view (not on page load), plays
+  // only while it is actually on screen, and never loads under reduced motion.
   useEffect(() => {
     const v = bgVideoRef.current
-    if (!v || bgFailed) return undefined
-    if (reduce) {
-      v.pause()
-      return undefined
-    }
-    const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? v.play().catch(() => {}) : v.pause()), {
-      threshold: 0.05,
-    })
+    if (!v || bgFailed || reduce) return undefined
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return v.pause()
+        if (!v.getAttribute('src')) v.src = '/production-bg.mp4'
+        v.play().catch(() => {})
+      },
+      { threshold: 0.05, rootMargin: '300px 0px' },
+    )
     io.observe(v)
     return () => io.disconnect()
   }, [reduce, bgFailed])
@@ -134,12 +136,10 @@ export default function About() {
             ref={bgVideoRef}
             className="about-bg-video"
             style={{ scale: bgScale, y: bgY }}
-            src="/production-bg.mp4"
-            autoPlay={!reduce}
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             onError={() => setBgFailed(true)}
           />
         )}

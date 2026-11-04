@@ -22,6 +22,7 @@ export const EVENT_META = {
 
 const evc = (name) => `/media/events-coverages/${name}`
 const gal = (n) => `/media/gallery/gallery-${String(n).padStart(2, '0')}.jpg`
+const mk = (n) => `/media/malkoo/malkoo-${String(n).padStart(2, '0')}.jpg`
 const proj = (n) => `/media/recent-projects/project-${String(n).padStart(2, '0')}.jpg`
 
 export const PLACEHOLDER_EVENTS = [
@@ -74,6 +75,35 @@ export const PLACEHOLDER_EVENTS = [
       { type: 'image', src: proj(5), alt: 'Event poster: Sufi Night' },
       { type: 'image', src: proj(6), alt: 'Event poster: music festival campaign' },
       { type: 'image', src: proj(7), alt: 'Asrar live in concert in Dallas, Texas' },
+    ],
+  },
+  {
+    id: 'malkoo-launch',
+    title: 'Malkoo Perfumes Launch',
+    place: 'Lahore',
+    year: 2026,
+    blurb: 'Launch night for Malkoo Perfumes at Faletti\'s Hotel, Lahore: stage, speakers, product reveal and the guests.',
+    items: [
+      { type: 'image', src: mk(1), alt: 'Stage with LED backdrop and the team at the Malkoo Perfumes launch' },
+      { type: 'image', src: mk(2), alt: 'RMS team lined up on stage at the launch' },
+      { type: 'image', src: mk(3), alt: 'Two hosts at the podium of Faletti\'s Hotel, Lahore' },
+      { type: 'image', src: mk(4), alt: 'Speakers and guests on stage beside the podium' },
+      { type: 'image', src: mk(5), alt: 'Speaker at the podium with guests on stage' },
+      { type: 'image', src: mk(6), alt: 'Speaker on stage under blue lighting' },
+      { type: 'image', src: mk(7), alt: 'Guest addressing the audience from the podium' },
+      { type: 'image', src: mk(8), alt: 'Stage party gathered around the podium' },
+      { type: 'image', src: mk(9), alt: 'Guests viewing the perfume bottles at the display table' },
+      { type: 'image', src: mk(10), alt: 'Three guests holding Malkoo perfume boxes on stage' },
+      { type: 'image', src: mk(11), alt: 'Performers on stage under blue lights beside a large bottle display' },
+      { type: 'image', src: mk(12), alt: 'Guests at the RMS and Malkoo branded media wall' },
+      { type: 'image', src: mk(13), alt: 'Crowd gathered around the launch cake and perfume display' },
+      { type: 'image', src: mk(14), alt: 'Group photo of guests and hosts with flowers' },
+      { type: 'image', src: mk(15), alt: 'Guests presenting a gift box on stage' },
+      { type: 'image', src: mk(16), alt: 'Guests posing with flowers by the wooden doors' },
+      { type: 'image', src: mk(17), alt: 'Group of guests with a flower bouquet' },
+      { type: 'image', src: mk(18), alt: 'Guests receiving flowers at the venue entrance' },
+      { type: 'image', src: mk(19), alt: 'Group of guests with a bouquet in the hotel hall' },
+      { type: 'image', src: mk(20), alt: 'Guests holding a gift together in the hall' },
     ],
   },
 ]

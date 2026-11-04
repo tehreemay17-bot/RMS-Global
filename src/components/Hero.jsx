@@ -59,6 +59,24 @@ export default function Hero({ ready }) {
     my.set(e.clientY - r.top - r.height * 0.6)
   }
 
+  // The video is fetched only after the page has finished loading (the poster shows meanwhile), so
+  // 2 MB of video never competes with the scripts, fonts and images needed for the first paint.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v || reduce || failed) return undefined
+    const load = () => {
+      if (v.getAttribute('src')) return
+      v.src = '/hero-video.mp4'
+      if (playing) v.play().catch(() => {})
+    }
+    if (document.readyState === 'complete') {
+      load()
+      return undefined
+    }
+    window.addEventListener('load', load, { once: true })
+    return () => window.removeEventListener('load', load)
+  }, [playing, reduce, failed])
+
   // Autoplay only while on screen, never under reduced motion, and only if the viewer hasn't paused it.
   useEffect(() => {
     const v = videoRef.current
@@ -97,13 +115,11 @@ export default function Hero({ ready }) {
           <video
             ref={videoRef}
             className="hero-video"
-            src="/hero-video.mp4"
             poster="/hero-poster.jpg"
-            autoPlay={!reduce}
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             onError={() => setFailed(true)}
           />
         )}

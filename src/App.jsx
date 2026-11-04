@@ -1,9 +1,8 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import { MotionConfig } from 'motion/react'
 import Cursor from './components/Cursor'
 import Grain from './components/Grain'
 import Seo from './components/Seo'
-import Preloader from './components/Preloader'
 import SmoothScroll from './components/SmoothScroll'
 import ScrollEffects from './components/ScrollEffects'
 import ScrollDock from './components/ScrollDock'
@@ -25,27 +24,10 @@ const Footer = lazy(() => import('./components/Footer'))
 
 const fallback = (id) => <section id={id} className="section" style={{ minHeight: '100svh' }} aria-busy="true" />
 
-const seen = () => {
-  try {
-    return sessionStorage.getItem('rms-intro') === '1'
-  } catch {
-    return false
-  }
-}
+// The old 2-second "counting" preloader was pure waiting: it delayed the first real content on every visit.
+const ready = true
 
 function App() {
-  // The intro plays once per browser session; later visits go straight to the page.
-  const [ready, setReady] = useState(seen)
-
-  const finishIntro = () => {
-    try {
-      sessionStorage.setItem('rms-intro', '1')
-    } catch {
-      /* storage unavailable: intro simply plays again next visit */
-    }
-    setReady(true)
-  }
-
   return (
     <MotionConfig reducedMotion="user">
       <SmoothScroll />
@@ -53,7 +35,6 @@ function App() {
       <Cursor />
       <Grain />
       <Seo />
-      {!ready && <Preloader onDone={finishIntro} />}
       <Nav ready={ready} />
       <ScrollDock ready={ready} />
       <WhatsAppButton ready={ready} />

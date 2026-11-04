@@ -32,3 +32,6 @@ design-system/
 *.njsproj
 *.sln
 *.sw?
+
+# raw originals copied into the project folder (the web-sized photos live in public/media/malkoo)
+/Malkoo/
