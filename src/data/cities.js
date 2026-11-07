@@ -35,7 +35,6 @@ export const CITIES = [
     stats: { events: 120, since: 1994 }, // PLACEHOLDER numbers
     // ─────────── ADD LAHORE'S REAL PHOTOS AND VIDEOS HERE ───────────
     media: [
-      photo(mk(1), 'RMS crew and guests on stage at the Malkoo Perfumes launch, Lahore'),
       photo(mk(12), 'Guests at the RMS and Malkoo branded media wall in Lahore'),
       photo(pic(13), 'Studio shoot with artists in Lahore'),
       photo(pic(19), 'Event poster for a live performance in Lahore'),

@@ -35,7 +35,6 @@ export const PLACEHOLDER_EVENTS = [
     year: 2026,
     blurb: 'Launch night for Malkoo Perfumes at Faletti\'s Hotel, Lahore: stage, speakers, product reveal and the guests.',
     items: [
-      { type: 'image', src: mk(1), alt: 'Stage with LED backdrop and the team at the Malkoo Perfumes launch' },
       { type: 'image', src: mk(2), alt: 'RMS team lined up on stage at the launch' },
       { type: 'image', src: mk(3), alt: 'Two hosts at the podium of Faletti\'s Hotel, Lahore' },
       { type: 'image', src: mk(4), alt: 'Speakers and guests on stage beside the podium' },
@@ -88,7 +87,6 @@ export const PLACEHOLDER_EVENTS = [
       { type: 'image', src: proj(5), alt: 'Event poster: Sufi Night' },
       { type: 'image', src: proj(6), alt: 'Event poster: music festival campaign' },
       { type: 'image', src: proj(7), alt: 'Asrar live in concert in Dallas, Texas' },
-      { type: 'image', src: mk(1), alt: 'RMS crew and guests on stage at the Malkoo Perfumes launch, Lahore' },
       { type: 'image', src: mk(11), alt: 'Performers on stage under blue lights at the Malkoo Perfumes launch' },
       { type: 'image', src: mk(12), alt: 'Guests at the RMS and Malkoo branded media wall' },
       { type: 'image', src: mk(9), alt: 'Guests with Malkoo perfume boxes at the display table' },

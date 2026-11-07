@@ -10,7 +10,7 @@ To publish: review the branch, then merge it into `main` and push (Vercel redepl
 ## What this branch contains
 
 ### 1. Malkoo Perfumes Launch (new block in the Events section)
-- 20 event photos (no videos), resized to web size (3.4 MB total, lazy-loaded) in `public/media/malkoo/`.
+- 19 event photos (no videos), resized to web size (3.4 MB total, lazy-loaded) in `public/media/malkoo/`.
 - Added as the last event in `src/data/events.js` (`id: 'malkoo-launch'`, place Lahore, year 2026).
 - Left out on purpose: 6 Malkoo product poster images (ads, not event photos) and 5 videos. Originals are in `C:\Users\bilal\Downloads\Malkoo`.
 - To reorder or retitle: edit the `malkoo-launch` entry in `src/data/events.js`.
@@ -25,7 +25,7 @@ Measured first: a Lighthouse mobile test of the live site scored 52/100 (first c
 - Animations the browser had to repaint every frame were rewritten to GPU-friendly versions with the same look: the spinning gradient borders on the booking card and active artist card (now a rotating layer), the video play-button pulse, and the hero scroll hint. The pulsing glow on the active artist card was removed. The booking card's blur (invisible, since its background is solid) was removed.
 
 ### 3. Second pass (2026-11-04, later)
-- **Malkoo event photos in the project portfolio**: 6 launch-night photos (stage crew, performers, media wall, perfume display, cake crowd, hosts) were added to "Our Recent Projects" (now 13 items), and 2 to the Lahore pin on the map. A "Malkoo Perfumes Campaign" block with the 6 product ads was built and then removed on request (product pictures are not wanted in the portfolio); those poster files were deleted from the project, originals stay in `C:\Users\bilal\Downloads\Malkoo`. The 5 videos and the 44 MB `.MOV` are still left out (too heavy; say if you want one added).
+- **Malkoo event photos in the project portfolio**: 5 launch-night photos (performers, media wall, perfume display, cake crowd, hosts) were added to "Our Recent Projects" (now 12 items), and 1 to the Lahore pin on the map. A "Malkoo Perfumes Campaign" block with the 6 product ads was built and then removed on request (product pictures are not wanted in the portfolio); those poster files were deleted from the project, originals stay in `C:\Users\bilal\Downloads\Malkoo`. The 5 videos and the 44 MB `.MOV` are still left out (too heavy; say if you want one added).
 - **All portfolio photos converted JPG to WebP** (max 1400 px wide): 16.0 MB down to 8.3 MB (about 48% less) with no visible change. The old `.jpg` files in `public/media` were removed; `hero-poster.jpg`, `og-image.jpg` and `logo.png` stay as they are (social previews need JPG/PNG). To add a photo, convert it to WebP and add it to the data file in `src/data/`.
 - Gallery images now decode off the main thread (`decoding="async"`).
 - The hero video is no longer downloaded on phones (640 px or narrower), Data Saver, or 2G/3G connections: they keep the poster image. Desktop on a normal connection is unchanged.
@@ -36,7 +36,7 @@ Measured first: a Lighthouse mobile test of the live site scored 52/100 (first c
 - Page order: Hero, Portfolio, Services, About, Where we work, Artists, Brands, Book, Contact. Section numbers were renumbered (Services 02, About 03, Where we work 04). Nav, scroll dock and footer links now say "Portfolio"; the hero ghost button now reads "See our portfolio".
 - Portfolio layout: headline "Work we've delivered.", a numbered project index (All work, 01 Malkoo Perfumes Launch, 02 Events and Coverages, 03 Our Recent Projects, 04 Behind the Scenes; swipeable row on phones), an at-a-glance strip (projects, photos, films, Est. 1994, all computed from the data), each project with a category label above its title and a "20 photos" style count, and a "Have a project in mind? Start a project" button at the end.
 - To edit projects: `src/data/events.js` (order, `category`, title, blurb). Order in the file is the order on the page.
-- Known overlap: 6 Malkoo launch photos appear in both "Malkoo Perfumes Launch" and "Our Recent Projects". The photo count counts each file once.
+- Known overlap: 5 Malkoo launch photos appear in both "Malkoo Perfumes Launch" and "Our Recent Projects". The photo count counts each file once.
 
 ## Not finished: verify before merging
 
@@ -51,3 +51,4 @@ Measured first: a Lighthouse mobile test of the live site scored 52/100 (first c
 - Commands: `npm run dev`, `npm run lint`, `npm run build`.
 - Photos and videos are cached for 30 days (`vercel.json`). When replacing a media file, give the new one a new filename.
 - Original large videos and raw photos are not in git (`source-media/` is ignored) and were lost with the emptied folder; the compressed web versions in `public/` are what the site uses.
+- The stage group photo with raised fists (malkoo-01) was removed from the site on request (2026-11-07) and its file deleted.
